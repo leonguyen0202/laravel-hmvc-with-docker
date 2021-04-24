@@ -47,8 +47,5 @@ RUN chown -R www-data:www-data /var/www/html
 # Change current user to www
 USER www
 
-# Run composer and npm
-RUN composer install && composer update && npm install
-
 # Expose port 9000 and start php server
 EXPOSE 900
