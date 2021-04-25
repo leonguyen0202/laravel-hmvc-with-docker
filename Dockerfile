@@ -1,4 +1,4 @@
-FROM php:latest
+FROM php:fpm
 
 # Copy composer.lock and composer.json
 COPY composer.json /var/www/html
@@ -27,7 +27,7 @@ RUN apt-get install -y nodejs npm
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install extensions
-RUN docker-php-ext-install gd pdo_mysql zip exif pcntl
+RUN docker-php-ext-install gd pdo_mysql zip exif pcntl fileinfo bcmath
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 
 # Install composer
@@ -42,7 +42,7 @@ COPY . /var/www/html
 
 # Copy existing application directory permissions
 COPY --chown=www:www . /var/www/html
-RUN chown -R www-data:www-data /var/www/html
+RUN chown -R www:www /var/www/html
 
 # Change current user to www
 USER www
