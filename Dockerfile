@@ -1,7 +1,7 @@
 FROM php:fpm
 
 # Copy composer.lock and composer.json
-COPY composer.json /var/www/html
+COPY composer.json package.json /var/www/html/
 
 # Set working directory
 WORKDIR /var/www/html
@@ -19,9 +19,9 @@ RUN apt-get update && apt-get install -y \
     vim \
     unzip \
     git \
-    curl
-
-RUN apt-get install -y nodejs npm
+    curl \
+    supervisor \
+    nodejs npm
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -47,5 +47,9 @@ RUN chown -R www:www /var/www/html
 # Change current user to www
 USER www
 
+# Install dependencies
+RUN composer install && composer update && npm install && npm update
+# CMD [ "composer", "install" ]
+
 # Expose port 9000 and start php server
-EXPOSE 900
+EXPOSE 9000

@@ -23,11 +23,12 @@
   <exclude-pattern>app/Http/Middleware/TrustProxies.php</exclude-pattern>
   <exclude-pattern>composer.lock</exclude-pattern>
 
-  <!-- Exclude the `vendor` folder. -->
+  <!-- Exclude folders. -->
   <exclude-pattern>vendor/</exclude-pattern>
   <exclude-pattern>node_modules/</exclude-pattern>
   <exclude-pattern>bootstrap/</exclude-pattern>
   <exclude-pattern>public/</exclude-pattern>
+  <exclude-pattern>database/migrations/</exclude-pattern>
 
   <!-- PHP CodeSniffer command line options -->
   <arg name="extensions" value="php,inc,css,js"/>
